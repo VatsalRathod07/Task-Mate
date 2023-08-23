@@ -45,10 +45,11 @@ body {
 }
 
 .todo-input {
+  position: relative;
   display: flex;
   justify-content: center;
-  /* border-bottom: 1px solid #272727;
-  padding-bottom: 25px; */
+  border-bottom: 1px solid #272727;
+  padding-bottom: 30px; 
   gap: 25px;
   align-items: flex-end;
 }
@@ -171,8 +172,10 @@ body {
 }
 
 .error-msg {
+  position: absolute;
   font-size: 10px;
   color: crimson;
-  border-bottom: 1px solid #272727;
-  padding-bottom: 10px;
+  top: 32%;
+  /* border-bottom: 1px solid #272727;
+  padding-bottom: 10px; */
 }

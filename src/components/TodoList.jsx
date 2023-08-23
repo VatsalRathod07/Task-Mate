@@ -1,8 +1,9 @@
 import React from 'react';
 import { MdOutlineDone } from 'react-icons/md';
 import { IoClose } from 'react-icons/io5';
+import { BsArrowUpShort, BsArrowDownShort } from 'react-icons/bs'
 
-const TodoList = ({ items, isCompleteScreen, onDelete, onComplete }) => {
+const TodoList = ({ items, isCompleteScreen, onDelete, onComplete, onMoveUp, onMoveDown }) => {
   return (
     <div className="todo-list">
       {items.map((list, index) => (
@@ -25,6 +26,12 @@ const TodoList = ({ items, isCompleteScreen, onDelete, onComplete }) => {
                 onClick={() => onComplete(index)}
               />
             )}
+          <div className="todo-controls">
+            {/* {index > 0 && <button onClick={() => onMoveUp(index)}>Move Up</button>} */}
+            {/* {index < items.length - 1 && <button onClick={() => onMoveDown(index)}>Move Down</button>} */}
+            {/* {index > 0 && <BsArrowDownShort onClick={() => onMoveUp(index)} />}
+            {index < items.length - 1 && <BsArrowUpShort onClick={() => onMoveDown(index)} />} */}
+          </div>
           </div>
         </div>
       ))}

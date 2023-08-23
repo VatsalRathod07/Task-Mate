@@ -16,7 +16,7 @@ const TodoWrapper = () => {
       setFieldsEmpty(true); // Set the state to indicate fields are empty
       return;
     }
-    setFieldsEmpty(false);
+     setFieldsEmpty(false);
 
     let newTodoItem = {
       // id: Math.random(),
@@ -77,6 +77,24 @@ const TodoWrapper = () => {
     setCompletedTodos(reducedTodo);
   }
 
+  const handleMoveUp = (index) => {
+    const updatedItems = [...todos];
+    const [item] = updatedItems.splice(index, 1);
+    updatedItems.splice(index - 1, 0, item);
+    setTodos(updatedItems);
+    localStorage.setItem('todos', JSON.stringify(updatedItems));
+  }
+
+  const handleMoveDown = (index) => {
+    const updatedItems = [...todos];
+    const [item] = updatedItems.splice(index, 1);
+    updatedItems.splice(index + 1, 0, item);
+    setTodos(updatedItems);
+    localStorage.setItem('todos', JSON.stringify(updatedItems));
+  }
+
+
+
   useEffect(() => {
     let savedTodos = JSON.parse(localStorage.getItem('todos'));
     let savedCompletedTodos = JSON.parse(localStorage.getItem('completedTodos'));
@@ -123,6 +141,8 @@ const TodoWrapper = () => {
           isCompleteScreen={isCompleteScreen}
           onDelete={isCompleteScreen ? handelDeleteCompleted : handelDelete}
           onComplete={handelComplete}
+          onMoveUp={handleMoveUp}
+          onMoveDown={handleMoveDown}
         />
       </div>
     </div>
