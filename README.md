@@ -1,3 +1,5 @@
+![image](https://github.com/VatsalRathod07/Task-Mate/assets/125674048/8d833ca4-7ae9-4f52-8413-87c8d323bc40)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
