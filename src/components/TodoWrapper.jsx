@@ -11,6 +11,7 @@ const TodoWrapper = () => {
   const [currentTaskIndex, setCurrentTaskIndex] = useState(-1); // To track the currently selected task index for adding subtasks
   const [subTaskText, setSubTaskText] = useState(""); // To store the text of the subtask being entered
 
+
   const addSubtask = (index) => {
     const updatedTodos = [...todos];
     updatedTodos[index]?.subtasks?.push(subTaskText);
@@ -127,7 +128,7 @@ const TodoWrapper = () => {
           <div className="todo-input">
             <div className="todo-input-item">
               <label htmlFor="">Task</label>
-              <input type="text" placeholder="New Task 🖊" value={Task} onChange={(e) => setTask(e.target.value)} />
+              <input type="text" placeholder="New Task 🖊" value={Task} onChange={(e) => setTask(e.target.value)} autoFocus/>
             </div>
             {/* <div className="todo-input-item">
               <label htmlFor="">SubTask</label>
