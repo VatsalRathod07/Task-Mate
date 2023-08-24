@@ -54,7 +54,7 @@ const TodoList = ({ items, isCompleteScreen, onDelete, onComplete, onMoveUp, onM
               />
             )}
             <div className="todo-controls">
-              <small onClick={() => toggleSubtasks(index)} className="hide-show-btn">{showSubtasks[index] ? <BiShow/> : <BiHide/>}</small>
+              <small onClick={() => toggleSubtasks(index)} className="hide-show-btn">{showSubtasks[index] ? <BiShow /> : <BiHide />}</small>
               {/* {index > 0 && <button onClick={() => onMoveUp(index)}>Move Up</button>} */}
               {/* {index < items.length - 1 && <button onClick={() => onMoveDown(index)}>Move Down</button>} */}
               {/* {index > 0 && <BsArrowDownShort onClick={() => onMoveUp(index)} />}
