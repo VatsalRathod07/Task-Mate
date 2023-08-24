@@ -8,29 +8,38 @@ const TodoWrapper = () => {
   const [subTask, setSubTask] = useState('');
   const [completedTodos, setCompletedTodos] = useState([]);
   const [fieldsEmpty, setFieldsEmpty] = useState(false); // State to track empty fields
+  const [currentTaskIndex, setCurrentTaskIndex] = useState(-1); // To track the currently selected task index for adding subtasks
+  const [subTaskText, setSubTaskText] = useState(""); // To store the text of the subtask being entered
+
+  const addSubtask = (index) => {
+    const updatedTodos = [...todos];
+    updatedTodos[index]?.subtasks?.push(subTaskText);
+    setTodos(updatedTodos);
+    setSubTaskText("");
+    setCurrentTaskIndex(-1);
+    localStorage.setItem('todos', JSON.stringify(updatedTodos)); // Save updated todos to localStorage
+  };
 
   const handelAddTodo = (e) => {
     e.preventDefault();
-
-    if (Task.trim() === '' || subTask.trim() === '') {
+    if (Task.trim() === '') {
       setFieldsEmpty(true); // Set the state to indicate fields are empty
       return;
     }
-     setFieldsEmpty(false);
+    setFieldsEmpty(false);
 
     let newTodoItem = {
-      // id: Math.random(),
       task: Task,
-      subtask: subTask
-    }
+      subtasks: [] // Initialize an empty array for subtasks
+    };
 
     let updatedTodoArray = [...todos];
     updatedTodoArray.push(newTodoItem);
     setTodos(updatedTodoArray);
-    localStorage.setItem('todos', JSON.stringify(updatedTodoArray));
-    setSubTask("")
-    setTask("")
-  }
+    localStorage.setItem('todos', JSON.stringify(updatedTodoArray)); // Save updated todos to localStorage
+    setSubTask("");
+    setTask("");
+  };
 
   // const handelDelete = (index) => {
   //   const filteredTodos = todos.filter((data) => data.id !== index)
@@ -101,10 +110,12 @@ const TodoWrapper = () => {
     if (savedTodos) {
       setTodos(savedTodos);
     }
+
+
     if (savedCompletedTodos) {
-      setCompletedTodos(savedCompletedTodos);
+      setCompletedTodos(savedCompletedTodos)
     }
-  }, []);
+  }, [])
 
   return (
     <div>
@@ -116,17 +127,17 @@ const TodoWrapper = () => {
           <div className="todo-input">
             <div className="todo-input-item">
               <label htmlFor="">Task</label>
-              <input type="text" placeholder="New Task" value={Task} onChange={(e) => setTask(e.target.value)} />
+              <input type="text" placeholder="New Task 🖊" value={Task} onChange={(e) => setTask(e.target.value)} />
             </div>
-            <div className="todo-input-item">
+            {/* <div className="todo-input-item">
               <label htmlFor="">SubTask</label>
               <input type="text" placeholder="SubTask" value={subTask} onChange={(e) => setSubTask(e.target.value)} />
-            </div>
+            </div> */}
             <div className="todo-input-item">
               <button type="button" className="primaryBtn" onClick={handelAddTodo}>Add Task</button>
             </div>
           </div>
-          {fieldsEmpty && <small className="error-msg">Task and SubTask are required!</small>}
+          {fieldsEmpty && <small className="error-msg">Task title is required!</small>}
         </div>
 
 
@@ -143,6 +154,11 @@ const TodoWrapper = () => {
           onComplete={handelComplete}
           onMoveUp={handleMoveUp}
           onMoveDown={handleMoveDown}
+          currentTaskIndex={currentTaskIndex}
+          subTaskText={subTaskText}
+          setSubTaskText={setSubTaskText}
+          addSubtask={addSubtask}
+          setCurrentTaskIndex={setCurrentTaskIndex}
         />
       </div>
     </div>
