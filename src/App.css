@@ -275,7 +275,7 @@ body {
   }
 
   .todo-wrapper {
-    width: 70%;
+    width: fit-content;
     padding: 1%;
   }
 
